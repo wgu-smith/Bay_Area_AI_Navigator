@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bay Area AI Navigator</title>
+<meta name="description" content="Compare AI developments at Stanford, in Silicon Valley and in San Francisco on one timeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap">
+<style>:root{--bg:#f3f5fa;--surface:#fff;--ink:#17233a;--muted:#46516a;--line:#d5dbe8;--brand:#1c2a70;--on-brand:#fff;--soft:#e4e9f7;--panel:#f7f9fd;
+--c-research:#2b3a8f;--c-education:#0b7a75;--c-funding:#a4531a;--c-mobility:#a4161a;--c-public:#6b3fa0;--c-infra:#4b5563;--link:#1a4fc4;
+--display:"Space Grotesk",system-ui,sans-serif;--body:Inter,system-ui,"Segoe UI",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1424;--surface:#171e33;--ink:#e8ecf8;--muted:#a9b3cc;--line:#2d3757;--brand:#aab8ff;--on-brand:#0f1424;--soft:#26305a;--panel:#1b2340;
+--c-research:#8ea0ff;--c-education:#4fd1c5;--c-funding:#f0a35e;--c-mobility:#ff8a8a;--c-public:#c7a2ff;--c-infra:#aab3c4;--link:#8fb4ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1424;--surface:#171e33;--ink:#e8ecf8;--muted:#a9b3cc;--line:#2d3757;--brand:#aab8ff;--on-brand:#0f1424;--soft:#26305a;--panel:#1b2340;
+--c-research:#8ea0ff;--c-education:#4fd1c5;--c-funding:#f0a35e;--c-mobility:#ff8a8a;--c-public:#c7a2ff;--c-infra:#aab3c4;--link:#8fb4ff;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);padding-block:1.5rem 2.5rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1000px;margin:0 auto;display:grid;gap:1rem}
+header h1{font:700 clamp(1.5rem,4vw,2.1rem)/1.15 var(--display);margin:0 0 .25rem;color:var(--brand);text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:65ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;min-width:0}
+a{color:var(--link)}
+#status,#summary{min-height:1.5em;margin:.25rem 0;color:var(--muted)}
+.group{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}
+button{font:inherit}
+#controls button{min-height:44px;padding:.25rem .9rem;border:2px solid var(--brand);border-radius:22px;background:transparent;color:var(--brand);cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+#controls button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
+#controls button:hover{background:var(--soft)} #controls button[aria-pressed="true"]:hover{background:var(--brand)}
+#controls button:focus-visible,button.dot:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.mark{display:inline-block;width:18px;height:18px;flex:none}
+.mark.circle{border-radius:50%}.mark.square{border-radius:2px}
+.mark.diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.mark.triangle{clip-path:polygon(50% 0,100% 100%,0 100%)}
+.mark.hexagon{clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.mark.cross{clip-path:polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%)}
+#controls button[aria-pressed="true"] .mark{box-shadow:0 0 0 2px var(--on-brand)}
+#timeline{margin-top:.75rem}
+#axis{position:relative;height:1.6rem;margin-left:8.5rem}
+#axis .tick{position:absolute;transform:translateX(-2px);font-size:.8rem;color:var(--muted);border-left:1px solid var(--line);padding-left:4px;white-space:nowrap}
+#axis .tick.end{transform:translateX(calc(-100% + 2px));border-left:0;border-right:1px solid var(--line);padding-left:0;padding-right:4px}
+.lane{display:grid;grid-template-columns:8.5rem 1fr;border-top:1px solid var(--line);align-items:start}
+.lane-label{font:600 1rem var(--display);color:var(--brand);padding:.75rem .5rem .5rem 0}
+.track{position:relative;min-height:48px}
+.track .grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line);opacity:.6}
+button.dot{position:absolute;width:44px;height:44px;border:0;background:transparent;padding:0;margin:2px 0;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%}
+button.dot .mark{width:22px;height:22px}
+button.dot:hover{background:var(--soft)} button.dot[aria-pressed="true"]{background:var(--soft);box-shadow:0 0 0 2px var(--brand)}
+button.dot.dim{opacity:.3}
+#detail{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+#detail h3{margin:0 0 .25rem;font:600 1.1rem var(--display);color:var(--brand)} #detail p{margin:.25rem 0}
+#list h3{font:600 1.1rem var(--display);color:var(--brand);margin:1rem 0 .25rem} #list ul{padding-left:1.25rem;margin:.25rem 0}
+.foot{color:var(--muted);font-size:.85rem;margin:0}
+@media (max-width:700px){#timeline{display:none}#views{display:none!important}}
+@media (prefers-reduced-motion:no-preference){button{transition:background .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Current AI developments in the Bay Area</h1>
+  <p>Compare Stanford, Silicon Valley and San Francisco on one time axis. Pick a category to highlight it, then select a marker for the details and the source.</p>
+</header>
+<section class="panel" aria-labelledby="compare-heading">
+  <h2 id="compare-heading" style="margin:0 0 .25rem;font:600 1.2rem var(--display)">Compare the three areas</h2>
+  <p id="status" role="status"></p>
+  <div id="controls" hidden>
+    <div class="group" role="group" aria-label="Category filter" id="filters"></div>
+    <div class="group" role="group" aria-label="View" id="views">
+      <button type="button" data-view="timeline" aria-pressed="true">Timeline</button>
+      <button type="button" data-view="list" aria-pressed="false">List</button>
+    </div>
+    <p id="summary" role="status"></p>
+  </div>
+  <div id="timeline" hidden>
+    <div id="axis" aria-hidden="true"></div>
+    <div id="lanes"></div>
+    <div id="detail" aria-live="polite"><p>Select a marker to see the details.</p></div>
+  </div>
+  <div id="list" hidden></div>
+</section>
+<p class="foot">Fictional coursework site, not affiliated with any organisation named on it. Every item links to its source and shows when it was last checked.</p>
+</div>
+<noscript><p>Turn on JavaScript to see the timeline.</p></noscript>
+<script>
+const AREAS = ['Stanford', 'Silicon Valley', 'San Francisco'];
+// Each category has a colour AND a shape, so colour is never the only cue.
+const CATEGORIES = {
+  'research':       { colour: 'var(--c-research)', shape: 'circle' },
+  'education':      { colour: 'var(--c-education)', shape: 'square' },
+  'funding':        { colour: 'var(--c-funding)', shape: 'diamond' },
+  'mobility':       { colour: 'var(--c-mobility)', shape: 'triangle' },
+  'public sector':  { colour: 'var(--c-public)', shape: 'hexagon' },
+  'infrastructure': { colour: 'var(--c-infra)', shape: 'cross' }
+};
+const statusEl = document.getElementById('status');
+const controlsEl = document.getElementById('controls');
+const filtersEl = document.getElementById('filters');
+const summaryEl = document.getElementById('summary');
+const timelineEl = document.getElementById('timeline');
+const axisEl = document.getElementById('axis');
+const lanesEl = document.getElementById('lanes');
+const detailEl = document.getElementById('detail');
+const listEl = document.getElementById('list');
+
+let items = [];            // every development, with its area
+let activeCategory = null; // null means "show all"
+let selected = null;
+let view = 'timeline';
+const narrow = window.matchMedia('(max-width: 700px)');
+const currentView = () => (narrow.matches ? 'list' : view);
+
+const DAY = 86400000;
+const toTime = iso => { const [y, m, d] = iso.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+const fmtDate = iso => new Date(toTime(iso)).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' });
+
+function markerShape(category) {
+  const span = document.createElement('span');
+  span.className = 'mark ' + CATEGORIES[category].shape;
+  span.style.background = CATEGORIES[category].colour;
+  span.setAttribute('aria-hidden', 'true');
+  return span;
+}
+
+function buildFilters() {
+  filtersEl.replaceChildren();
+  const all = document.createElement('button');
+  all.type = 'button'; all.textContent = 'All categories'; all.dataset.cat = '';
+  all.setAttribute('aria-pressed', 'true');
+  filtersEl.append(all);
+  const present = Object.keys(CATEGORIES).filter(c => items.some(i => i.category === c));
+  for (const c of present) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.cat = c; b.setAttribute('aria-pressed', 'false');
+    b.append(markerShape(c), ' ' + c);
+    filtersEl.append(b);
+  }
+}
+
+filtersEl.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  activeCategory = b.dataset.cat || null;
+  for (const x of filtersEl.children) x.setAttribute('aria-pressed', String((x.dataset.cat || null) === activeCategory));
+  render();
+});
+document.getElementById('views').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  view = b.dataset.view;
+  for (const x of e.currentTarget.children) x.setAttribute('aria-pressed', String(x.dataset.view === view));
+  render();
+});
+
+function matches(i) { return !activeCategory || i.category === activeCategory; }
+
+function renderSummary() {
+  const parts = AREAS.map(a => a + ' ' + items.filter(i => i.area === a && matches(i)).length);
+  summaryEl.textContent = (activeCategory ? 'Category "' + activeCategory + '": ' : 'All categories: ') + parts.join(', ') + '.';
+}
+
+function renderList() {
+  listEl.replaceChildren();
+  for (const area of AREAS) {
+    const h = document.createElement('h3'); h.textContent = area;
+    const ul = document.createElement('ul');
+    const rows = items.filter(i => i.area === area && matches(i)).sort((a, b) => b.published_on.localeCompare(a.published_on));
+    if (rows.length === 0) {
+      const p = document.createElement('p'); p.textContent = 'Nothing in this category for ' + area + '.';
+      listEl.append(h, p); continue;
+    }
+    for (const r of rows) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = /^https?:\/\//i.test(r.source_url) ? r.source_url : '#';
+      a.textContent = r.title;
+      li.append(a, ' (' + r.category + ', published ' + r.published_on + ', last verified ' + r.last_verified + ')');
+      ul.append(li);
+    }
+    listEl.append(h, ul);
+  }
+}
+
+function showDetail(i) {
+  selected = i;
+  detailEl.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = i.title;
+  const meta = document.createElement('p');
+  meta.append(markerShape(i.category), ' ' + i.area + ' | ' + i.category + ' | published ' + fmtDate(i.published_on) + ' | last verified ' + fmtDate(i.last_verified));
+  const a = document.createElement('a');
+  a.href = /^https?:\/\//i.test(i.source_url) ? i.source_url : '#';
+  a.textContent = 'Read the source';
+  detailEl.append(h, meta, a);
+  for (const b of lanesEl.querySelectorAll('button.dot')) b.setAttribute('aria-pressed', String(b.dataset.id === String(items.indexOf(i))));
+}
+
+function renderTimeline() {
+  axisEl.replaceChildren(); lanesEl.replaceChildren();
+  const times = items.map(i => toTime(i.published_on));
+  let min = Math.min(...times), max = Math.max(...times);
+  const first = new Date(min); min = Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), 1);
+  const last = new Date(max); max = Date.UTC(last.getUTCFullYear(), last.getUTCMonth() + 1, 1);
+  const span = max - min;
+  const pct = t => ((t - min) / span) * 100;
+  // quarter ticks on the shared axis
+  const tickPcts = [];
+  for (let d = new Date(min); d.getTime() < max; d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 3, 1))) {
+    const tick = document.createElement('span');
+    tick.className = 'tick'; tick.style.left = pct(d.getTime()) + '%';
+    tick.textContent = d.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', year: 'numeric' });
+    if (pct(d.getTime()) > 88) tick.classList.add('end');
+    tickPcts.push(pct(d.getTime()));
+    axisEl.append(tick);
+  }
+  const laneWidth = lanesEl.clientWidth || 800;
+  AREAS.forEach(area => {
+    const lane = document.createElement('div');
+    lane.className = 'lane';
+    const label = document.createElement('div'); label.className = 'lane-label'; label.textContent = area;
+    const track = document.createElement('div'); track.className = 'track';
+    for (const t of tickPcts) { const g = document.createElement('span'); g.className = 'grid'; g.style.left = t + '%'; track.append(g); }
+    const rowEnds = [];
+    const rows = items.map((i, idx) => ({ i, idx })).filter(o => o.i.area === area)
+                      .sort((a, b) => a.i.published_on.localeCompare(b.i.published_on));
+    for (const { i, idx } of rows) {
+      const x = (pct(toTime(i.published_on)) / 100) * laneWidth;
+      let r = 0; while (rowEnds[r] !== undefined && x - rowEnds[r] < 48) r++;   // avoid overlapping targets
+      rowEnds[r] = x;
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'dot'; b.dataset.id = String(idx);
+      b.style.left = 'calc(' + pct(toTime(i.published_on)) + '% - 22px)';
+      b.style.top = (r * 48) + 'px';
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', area + ': ' + i.title + ', ' + i.category + ', ' + fmtDate(i.published_on));
+      if (!matches(i)) b.classList.add('dim');
+      b.append(markerShape(i.category));
+      b.addEventListener('click', () => showDetail(i));
+      track.append(b);
+    }
+    track.style.height = (Math.max(rowEnds.length, 1) * 48) + 'px';
+    lane.append(label, track);
+    lanesEl.append(lane);
+  });
+  if (selected) showDetail(selected);
+}
+
+function render() {
+  renderSummary();
+  const v = currentView();
+  timelineEl.hidden = v !== 'timeline';
+  listEl.hidden = v !== 'list';
+  if (v === 'timeline') renderTimeline(); else renderList();
+}
+
+
+const DATA = [
+ {
+  "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes",
+  "category": "education",
+  "source_url": "https://stanforddaily.com/2026/10/19/ai-policies/",
+  "published_on": "2026-10-19",
+  "last_verified": "2026-11-26",
+  "area": "Stanford"
+ },
+ {
+  "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding",
+  "category": "funding",
+  "source_url": "https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/",
+  "published_on": "2026-10-05",
+  "last_verified": "2026-11-26",
+  "area": "Silicon Valley"
+ },
+ {
+  "title": "Stanford merges HAI and Stanford Data Science under the HAI name",
+  "category": "research",
+  "source_url": "https://hai.stanford.edu/news/why-stanford-is-restructuring-for-ais-next-era",
+  "published_on": "2026-05-04",
+  "last_verified": "2026-11-26",
+  "area": "Stanford"
+ },
+ {
+  "title": "AI Index 2026: twelve takeaways",
+  "category": "research",
+  "source_url": "https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report",
+  "published_on": "2026-04-13",
+  "last_verified": "2026-11-26",
+  "area": "Stanford"
+ },
+ {
+  "title": "The AI boom on the ground in Silicon Valley",
+  "category": "infrastructure",
+  "source_url": "https://www.marketplace.org/story/2026/01/27/exploring-the-ai-boom-on-the-ground-in-silicon-valley",
+  "published_on": "2026-01-27",
+  "last_verified": "2026-11-26",
+  "area": "Silicon Valley"
+ },
+ {
+  "title": "Waymo adds Bay Area freeway rides and San Jose airport service",
+  "category": "mobility",
+  "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
+  "published_on": "2025-11-12",
+  "last_verified": "2026-11-26",
+  "area": "San Francisco"
+ },
+ {
+  "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees",
+  "category": "public sector",
+  "source_url": "https://www.sf.gov/news-mayor-lurie-brings-ai-technology-to-san-francisco-government-cementing-city-as-global-ai-leader",
+  "published_on": "2025-07-14",
+  "last_verified": "2026-11-26",
+  "area": "San Francisco"
+ }
+];
+function clean(r) {
+  return r && AREAS.includes(r.area) && CATEGORIES[r.category] && typeof r.title === 'string' &&
+         /^\d{4}-\d{2}-\d{2}$/.test(r.published_on || '') && /^\d{4}-\d{2}-\d{2}$/.test(r.last_verified || '');
+}
+let feedChecked = '';
+let lastRows = null;
+function setItems(rows, live) {
+  lastRows = rows;
+  items = rows.filter(clean);
+  if (selected && !items.includes(selected)) selected = null;
+  const newest = items.reduce((m, i) => (i.last_verified > m ? i.last_verified : m), '');
+  const checked = live && /^\d{4}-\d{2}-\d{2}$/.test(feedChecked) && feedChecked > newest ? feedChecked : newest;
+  statusEl.textContent = items.length + ' developments across ' + AREAS.length + ' areas. ' +
+    (live ? 'Live feed' : 'Saved snapshot') + (checked ? ', last checked ' + fmtDate(checked) + '.' : '.');
+  buildFilters();
+  if (activeCategory && !items.some(i => i.category === activeCategory)) activeCategory = null;
+  controlsEl.hidden = false;
+  render();
+}
+let resizeTimer;
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
+setItems(DATA, false);               // works at once, even without the live feed
+async function refresh() {          // read developments.json, which the hourly update rewrites
+  try {
+    const res = await fetch('developments.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const file = await res.json();
+    feedChecked = typeof file.last_run === 'string' ? file.last_run : '';
+    if (Array.isArray(file.items) && file.items.length) setItems(file.items, true);
+  } catch (e) { /* opened from disk or offline: keep the saved snapshot */ }
+}
+refresh();
+setInterval(refresh, 5 * 60 * 1000);  // pick up new items without a reload
+</script>
+</body>
+</html>

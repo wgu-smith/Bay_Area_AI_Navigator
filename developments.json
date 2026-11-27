@@ -1,0 +1,62 @@
+{
+ "last_run": "2026-11-26",
+ "note": "Seeded by hand.",
+ "items": [
+  {
+   "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes",
+   "category": "education",
+   "source_url": "https://stanforddaily.com/2026/10/19/ai-policies/",
+   "published_on": "2026-10-19",
+   "last_verified": "2026-11-26",
+   "area": "Stanford"
+  },
+  {
+   "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding",
+   "category": "funding",
+   "source_url": "https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/",
+   "published_on": "2026-10-05",
+   "last_verified": "2026-11-26",
+   "area": "Silicon Valley"
+  },
+  {
+   "title": "Stanford merges HAI and Stanford Data Science under the HAI name",
+   "category": "research",
+   "source_url": "https://hai.stanford.edu/news/why-stanford-is-restructuring-for-ais-next-era",
+   "published_on": "2026-05-04",
+   "last_verified": "2026-11-26",
+   "area": "Stanford"
+  },
+  {
+   "title": "AI Index 2026: twelve takeaways",
+   "category": "research",
+   "source_url": "https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report",
+   "published_on": "2026-04-13",
+   "last_verified": "2026-11-26",
+   "area": "Stanford"
+  },
+  {
+   "title": "The AI boom on the ground in Silicon Valley",
+   "category": "infrastructure",
+   "source_url": "https://www.marketplace.org/story/2026/01/27/exploring-the-ai-boom-on-the-ground-in-silicon-valley",
+   "published_on": "2026-01-27",
+   "last_verified": "2026-11-26",
+   "area": "Silicon Valley"
+  },
+  {
+   "title": "Waymo adds Bay Area freeway rides and San Jose airport service",
+   "category": "mobility",
+   "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
+   "published_on": "2025-11-12",
+   "last_verified": "2026-11-26",
+   "area": "San Francisco"
+  },
+  {
+   "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees",
+   "category": "public sector",
+   "source_url": "https://www.sf.gov/news-mayor-lurie-brings-ai-technology-to-san-francisco-government-cementing-city-as-global-ai-leader",
+   "published_on": "2025-07-14",
+   "last_verified": "2026-11-26",
+   "area": "San Francisco"
+  }
+ ]
+}
