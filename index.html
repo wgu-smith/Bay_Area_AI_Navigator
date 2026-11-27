@@ -49,6 +49,7 @@ button.dot.dim{opacity:.3}
 #detail{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
 #detail h3{margin:0 0 .25rem;font:600 1.1rem var(--display);color:var(--brand)} #detail p{margin:.25rem 0}
 #list h3{font:600 1.1rem var(--display);color:var(--brand);margin:1rem 0 .25rem} #list ul{padding-left:1.25rem;margin:.25rem 0}
+ #rubric{margin-top:1rem;color:var(--muted)} #rubric summary{cursor:pointer;color:var(--link);min-height:44px;display:flex;align-items:center} #rubric p{margin:.35rem 0;font-size:.92rem}
 .foot{color:var(--muted);font-size:.85rem;margin:0}
 @media (max-width:700px){#timeline{display:none}#views{display:none!important}}
 @media (prefers-reduced-motion:no-preference){button{transition:background .15s}}
@@ -77,6 +78,7 @@ button.dot.dim{opacity:.3}
     <div id="detail" aria-live="polite"><p>Select a marker to see the details.</p></div>
   </div>
   <div id="list" hidden></div>
+  <details id="rubric" hidden><summary>How strength and relevance are assessed</summary><div id="rubric-body"></div></details>
 </section>
 <p class="foot">Fictional coursework site, not affiliated with any organisation named on it. Every item links to its source and shows when it was last checked.</p>
 </div>
@@ -113,9 +115,13 @@ const DAY = 86400000;
 const toTime = iso => { const [y, m, d] = iso.split('-').map(Number); return Date.UTC(y, m - 1, d); };
 const fmtDate = iso => new Date(toTime(iso)).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' });
 
-function markerShape(category) {
+function markerShape(category, strength) {
   const span = document.createElement('span');
   span.className = 'mark ' + CATEGORIES[category].shape;
+  if (typeof strength === 'number') {          // bigger marker = stronger assessed evidence
+    const px = Math.max(14, Math.min(30, 12 + (strength - 40) * 0.5));
+    span.style.width = span.style.height = px + 'px';
+  }
   span.style.background = CATEGORIES[category].colour;
   span.setAttribute('aria-hidden', 'true');
   return span;
@@ -171,7 +177,7 @@ function renderList() {
       const a = document.createElement('a');
       a.href = /^https?:\/\//i.test(r.source_url) ? r.source_url : '#';
       a.textContent = r.title;
-      li.append(a, ' (' + r.category + ', published ' + r.published_on + ', last verified ' + r.last_verified + ')');
+      li.append(a, ' (' + r.category + ', published ' + r.published_on + ', last verified ' + r.last_verified + (r.scores ? ', strength ' + r.scores.strength : '') + ')');
       ul.append(li);
     }
     listEl.append(h, ul);
@@ -187,7 +193,22 @@ function showDetail(i) {
   const a = document.createElement('a');
   a.href = /^https?:\/\//i.test(i.source_url) ? i.source_url : '#';
   a.textContent = 'Read the source';
-  detailEl.append(h, meta, a);
+  detailEl.append(h, meta);
+  if (i.source_type || i.place) {
+    const ev = document.createElement('p');
+    ev.textContent = 'Evidence: ' + (i.source_type || 'not labelled') + (i.place ? ' | Place: ' + i.place : '');
+    detailEl.append(ev);
+  }
+  if (i.scores && typeof i.scores.strength === 'number') {
+    const sc = i.scores, r = sc.relevance || {};
+    const p1 = document.createElement('p');
+    p1.textContent = 'Assessed strength: ' + sc.strength + ' / 100 (source ' + sc.source + ', corroboration ' + sc.corroboration +
+      ', specificity ' + sc.specificity + ', significance ' + sc.significance + ')';
+    const p2 = document.createElement('p');
+    p2.textContent = 'Relevance: ' + AREAS.map(x => x + ' ' + (r[x] ?? '-')).join(' | ');
+    detailEl.append(p1, p2);
+  }
+  detailEl.append(a);
   for (const b of lanesEl.querySelectorAll('button.dot')) b.setAttribute('aria-pressed', String(b.dataset.id === String(items.indexOf(i))));
 }
 
@@ -228,9 +249,9 @@ function renderTimeline() {
       b.style.left = 'calc(' + pct(toTime(i.published_on)) + '% - 22px)';
       b.style.top = (r * 48) + 'px';
       b.setAttribute('aria-pressed', 'false');
-      b.setAttribute('aria-label', area + ': ' + i.title + ', ' + i.category + ', ' + fmtDate(i.published_on));
+      b.setAttribute('aria-label', area + ': ' + i.title + ', ' + i.category + ', ' + fmtDate(i.published_on) + (i.scores ? ', assessed strength ' + i.scores.strength + ' of 100' : ''));
       if (!matches(i)) b.classList.add('dim');
-      b.append(markerShape(i.category));
+      b.append(markerShape(i.category, i.scores && i.scores.strength));
       b.addEventListener('click', () => showDetail(i));
       track.append(b);
     }
@@ -313,6 +334,7 @@ function clean(r) {
          /^\d{4}-\d{2}-\d{2}$/.test(r.published_on || '') && /^\d{4}-\d{2}-\d{2}$/.test(r.last_verified || '');
 }
 let feedChecked = '';
+let feedRubric = null;
 let lastRows = null;
 function setItems(rows, live) {
   lastRows = rows;
@@ -330,12 +352,24 @@ function setItems(rows, live) {
 let resizeTimer;
 window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
 setItems(DATA, false);               // works at once, even without the live feed
+function showRubric() {
+  const box = document.getElementById('rubric'), body = document.getElementById('rubric-body');
+  if (!feedRubric) { box.hidden = true; return; }
+  body.replaceChildren();
+  for (const line of [feedRubric.note, ...(feedRubric.strength || []), ...(feedRubric.relevance || [])]) {
+    if (typeof line !== 'string') continue;
+    const p = document.createElement('p'); p.textContent = line; body.append(p);
+  }
+  box.hidden = false;
+}
 async function refresh() {          // read developments.json, which the hourly update rewrites
   try {
     const res = await fetch('developments.json?t=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const file = await res.json();
     feedChecked = typeof file.last_run === 'string' ? file.last_run : '';
+    feedRubric = file.rubric || null;
+    showRubric();
     if (Array.isArray(file.items) && file.items.length) setItems(file.items, true);
   } catch (e) { /* opened from disk or offline: keep the saved snapshot */ }
 }

@@ -9,7 +9,19 @@
    "published_on": "2026-11-20",
    "source_type": "Primary source",
    "source_url": "https://hai.stanford.edu/news/ai-enabled-video-system-monitors-icu-patients-for-early-signs-of-delirium",
-   "title": "Stanford researchers describe an AI video system that monitors ICU patients for early signs of delirium"
+   "title": "Stanford researchers describe an AI video system that monitors ICU patients for early signs of delirium",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 9,
+    "strength": 58,
+    "relevance": {
+     "Stanford": 95,
+     "Silicon Valley": 15,
+     "San Francisco": 5
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -19,7 +31,19 @@
    "published_on": "2026-11-19",
    "source_type": "Primary source",
    "source_url": "https://hai.stanford.edu/news/ai-might-be-flooding-state-court-houses-but-proving-it-is-another-matter",
-   "title": "Stanford researchers estimate AI-assisted drafting in over a third of 2026 Santa Clara County complaints"
+   "title": "Stanford researchers estimate AI-assisted drafting in over a third of 2026 Santa Clara County complaints",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 8,
+    "strength": 57,
+    "relevance": {
+     "Stanford": 90,
+     "Silicon Valley": 55,
+     "San Francisco": 0
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -28,7 +52,19 @@
    "published_on": "2026-11-16",
    "source_type": "Primary source",
    "source_url": "https://hai.stanford.edu/news/stanford-hai-backs-ambitious-ai-projects-with-2026-hoffman-yee-grants",
-   "title": "Stanford HAI announces its 2026 Hoffman-Yee research grants for seven interdisciplinary teams"
+   "title": "Stanford HAI announces its 2026 Hoffman-Yee research grants for seven interdisciplinary teams",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 16,
+    "significance": 8,
+    "strength": 59,
+    "relevance": {
+     "Stanford": 95,
+     "Silicon Valley": 15,
+     "San Francisco": 10
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -38,7 +74,19 @@
    "published_on": "2026-11-10",
    "source_type": "Primary source",
    "source_url": "https://hai.stanford.edu/news/the-world-has-changed-insights-from-the-new-ai100-report",
-   "title": "AI100 study panel, administered out of Stanford HAI, publishes its third five-year report on AI"
+   "title": "AI100 study panel, administered out of Stanford HAI, publishes its third five-year report on AI",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 10,
+    "strength": 59,
+    "relevance": {
+     "Stanford": 90,
+     "Silicon Valley": 25,
+     "San Francisco": 10
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -46,7 +94,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2026-10-19",
    "source_url": "https://stanforddaily.com/2026/10/19/ai-policies/",
-   "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes"
+   "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes",
+   "scores": {
+    "source": 30,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 6,
+    "strength": 50,
+    "relevance": {
+     "Stanford": 98,
+     "Silicon Valley": 5,
+     "San Francisco": 0
+    }
+   }
   },
   {
    "area": "Silicon Valley",
@@ -54,7 +114,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2026-10-05",
    "source_url": "https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/",
-   "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding"
+   "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding",
+   "scores": {
+    "source": 30,
+    "corroboration": 0,
+    "specificity": 16,
+    "significance": 12,
+    "strength": 58,
+    "relevance": {
+     "Stanford": 5,
+     "Silicon Valley": 55,
+     "San Francisco": 55
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -62,7 +134,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2026-05-04",
    "source_url": "https://hai.stanford.edu/news/why-stanford-is-restructuring-for-ais-next-era",
-   "title": "Stanford merges HAI and Stanford Data Science under the HAI name"
+   "title": "Stanford merges HAI and Stanford Data Science under the HAI name",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 8,
+    "strength": 57,
+    "relevance": {
+     "Stanford": 98,
+     "Silicon Valley": 10,
+     "San Francisco": 5
+    }
+   }
   },
   {
    "area": "Stanford",
@@ -70,7 +154,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2026-04-13",
    "source_url": "https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report",
-   "title": "AI Index 2026: twelve takeaways"
+   "title": "AI Index 2026: twelve takeaways",
+   "scores": {
+    "source": 35,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 10,
+    "strength": 59,
+    "relevance": {
+     "Stanford": 90,
+     "Silicon Valley": 20,
+     "San Francisco": 10
+    }
+   }
   },
   {
    "area": "Silicon Valley",
@@ -78,7 +174,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2026-01-27",
    "source_url": "https://www.marketplace.org/story/2026/01/27/exploring-the-ai-boom-on-the-ground-in-silicon-valley",
-   "title": "The AI boom on the ground in Silicon Valley"
+   "title": "The AI boom on the ground in Silicon Valley",
+   "scores": {
+    "source": 30,
+    "corroboration": 0,
+    "specificity": 12,
+    "significance": 8,
+    "strength": 50,
+    "relevance": {
+     "Stanford": 10,
+     "Silicon Valley": 85,
+     "San Francisco": 30
+    }
+   }
   },
   {
    "area": "San Francisco",
@@ -86,7 +194,19 @@
    "last_verified": "2026-11-26",
    "published_on": "2025-11-12",
    "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
-   "title": "Waymo adds Bay Area freeway rides and San Jose airport service"
+   "title": "Waymo adds Bay Area freeway rides and San Jose airport service",
+   "scores": {
+    "source": 30,
+    "corroboration": 0,
+    "specificity": 14,
+    "significance": 10,
+    "strength": 54,
+    "relevance": {
+     "Stanford": 0,
+     "Silicon Valley": 60,
+     "San Francisco": 85
+    }
+   }
   },
   {
    "area": "San Francisco",
@@ -94,7 +214,33 @@
    "last_verified": "2026-11-26",
    "published_on": "2025-07-14",
    "source_url": "https://www.sf.gov/news-mayor-lurie-brings-ai-technology-to-san-francisco-government-cementing-city-as-global-ai-leader",
-   "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees"
+   "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees",
+   "scores": {
+    "source": 40,
+    "corroboration": 0,
+    "specificity": 16,
+    "significance": 9,
+    "strength": 65,
+    "relevance": {
+     "Stanford": 0,
+     "Silicon Valley": 10,
+     "San Francisco": 98
+    }
+   }
   }
- ]
+ ],
+ "rubric": {
+  "note": "These scores are an assessment by Claude applying the rubric below. They are a consistent judgement, not an objective measurement. The 11 items first scored on 27 Nov 2026 were scored from their records; the sources of the four items added by the hourly task were not independently re-opened.",
+  "strength": [
+   "Strength (0-100) = source type (0-40) + corroboration (0-25) + specificity (0-20) + significance (0-15).",
+   "Source type: filing or regulator/city record 40; the institution's own page about its own work 35; independent reporting 30; preprint 22; a company's own announcement 15.",
+   "Corroboration: 0 if one source only; 12 with one independent source; 25 with two or more independent sources or a primary record plus an independent source. Pages from the same organisation are not independent.",
+   "Specificity: named people, organisations, dates and numbers, and a link to the underlying record (0-20). Significance: how large and lasting the development is (0-15).",
+   "New items must score at least 50 to be added."
+  ],
+  "relevance": [
+   "Relevance (0-100) is scored separately for Stanford, Silicon Valley and San Francisco, because one story can touch more than one area. The item's area is the one with the highest relevance."
+  ],
+  "admission_threshold": 50
+ }
 }
