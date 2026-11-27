@@ -1,14 +1,42 @@
 {
-  "note": "Feeds read by scripts/update_developments.py every hour. The script reports how many items each feed returned, so a wrong address shows up in the run log. KQED is deliberately not listed.",
+  "note": "Feeds read by scripts/update_developments.py every hour. If an address is a normal web page, the script follows the feed link the page advertises. The script reports how many stories each feed returned, so a bad address shows up in the run log. KQED is deliberately not listed. Stanford Report and Mercury News were removed because they answered 403 Forbidden to automated requests, and the script does not try to get around that.",
   "feeds": [
-    { "name": "Stanford HAI news", "url": "https://hai.stanford.edu/news/rss.xml", "kind": "primary", "home_area": "Stanford" },
-    { "name": "Stanford Report", "url": "https://news.stanford.edu/feed/", "kind": "primary", "home_area": "Stanford" },
-    { "name": "Stanford Daily", "url": "https://stanforddaily.com/feed/", "kind": "news", "home_area": "Stanford" },
-    { "name": "Crunchbase News", "url": "https://news.crunchbase.com/feed/", "kind": "news" },
-    { "name": "San Jose Spotlight", "url": "https://sanjosespotlight.com/feed/", "kind": "news" },
-    { "name": "Mercury News", "url": "https://www.mercurynews.com/feed/", "kind": "news" },
-    { "name": "Palo Alto Online", "url": "https://www.paloaltoonline.com/feed/", "kind": "news" },
-    { "name": "San Francisco Standard", "url": "https://sfstandard.com/feed/", "kind": "news" },
-    { "name": "San Francisco Chronicle", "url": "https://www.sfchronicle.com/rss/", "kind": "news" }
+    {
+      "name": "Stanford HAI news",
+      "url": "https://hai.stanford.edu/news",
+      "kind": "primary",
+      "home_area": "Stanford"
+    },
+    {
+      "name": "Stanford Daily",
+      "url": "https://stanforddaily.com/feed/",
+      "kind": "news",
+      "home_area": "Stanford"
+    },
+    {
+      "name": "Crunchbase News",
+      "url": "https://news.crunchbase.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "San Jose Spotlight",
+      "url": "https://sanjosespotlight.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "Palo Alto Online",
+      "url": "https://www.paloaltoonline.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "San Francisco Standard",
+      "url": "https://sfstandard.com/feed/",
+      "kind": "news"
+    },
+    {
+      "name": "San Francisco Chronicle",
+      "url": "https://www.sfchronicle.com/",
+      "kind": "news"
+    }
   ]
 }

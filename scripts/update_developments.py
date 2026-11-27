@@ -8,7 +8,7 @@ rubric stored in developments.json, and adds at most 3 per run.
 This is an automated, rules-based assessment. It cannot check whether a story supports
 its headline, so every item it adds is labelled assessed_by = "automated".
 """
-import html, json, re, sys, urllib.request, xml.etree.ElementTree as ET
+import html, json, re, sys, urllib.parse, urllib.request, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -77,9 +77,30 @@ def fetch(feed, fixtures):
     if fixtures:
         p = Path(fixtures) / (re.sub(r"\W+", "_", feed["name"]).lower() + ".xml")
         return p.read_text(encoding="utf-8") if p.exists() else None
-    req = urllib.request.Request(feed["url"], headers=UA)
+    text = get(feed["url"])
+    if not looks_like_feed(text):  # a normal web page: follow its advertised feed link
+        found = discover(text, feed["url"])
+        if not found:
+            raise ValueError("page is not a feed and advertises no feed link")
+        text = get(found)
+    return text
+
+def get(url):
+    req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         return r.read().decode("utf-8", "replace")
+
+def looks_like_feed(text):
+    return bool(re.match(r"\s*(<\?xml[^>]*>\s*)?(<!--.*?-->\s*)*<(rss|feed|rdf:RDF)\b", text, re.S | re.I))
+
+def discover(page, base):
+    """Return the first RSS or Atom address a web page advertises in <link rel="alternate">."""
+    for tag in re.findall(r"<link\b[^>]*>", page, re.I):
+        if re.search(r'rel=["\']alternate["\']', tag, re.I) and re.search(r'type=["\']application/(rss|atom)\+xml["\']', tag, re.I):
+            m = re.search(r'href=["\']([^"\']+)["\']', tag, re.I)
+            if m:
+                return urllib.parse.urljoin(base, html.unescape(m.group(1)))
+    return None
 
 def norm_url(u):
     return re.sub(r"[?#].*$", "", u.strip().lower()).rstrip("/")

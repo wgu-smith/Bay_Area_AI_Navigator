@@ -15,7 +15,7 @@ added, status = u.run(tmp, str(ROOT / "tests" / "fixtures"), now)
 after = json.loads((tmp / "developments.json").read_text())
 titles = [a["title"] for a in added]
 checks = {
-  "bad feed does not stop the run": any(s.startswith("FAILED") for n, s in status if n == "Mercury News"),
+  "bad feed does not stop the run": any(s.startswith("FAILED") for n, s in status if n == "San Francisco Chronicle"),
   "missing feeds are reported, not fatal": any(s == "no fixture" for _, s in status),
   "Stanford AI story added as Primary source": any("radiology" in t and a["source_type"] == "Primary source" and a["area"] == "Stanford" for t, a in zip(titles, added)),
   "San Francisco funding story added with category funding": any("raises $250 million" in t and a["area"] == "San Francisco" and a["category"] == "funding" for t, a in zip(titles, added)),
@@ -34,6 +34,11 @@ checks = {
   "sorted newest first": [i["published_on"] for i in after["items"]] == sorted((i["published_on"] for i in after["items"]), reverse=True),
   "stamps updated": after["checked_at"] == "2026-11-27T12:00:00Z" and after["last_run"] == "2026-11-27",
 }
+# feed discovery from a normal web page
+page = '<html><head><link rel="alternate" type="application/rss+xml" href="/news/feed.xml"><link rel="stylesheet" href="a.css"></head></html>'
+checks["feed link discovered and made absolute"] = u.discover(page, "https://example.org/news") == "https://example.org/news/feed.xml"
+checks["page with no feed link finds nothing"] = u.discover("<html><head></head></html>", "https://example.org/") is None
+checks["feed text recognised"] = u.looks_like_feed('<?xml version="1.0"?><rss version="2.0"></rss>') and u.looks_like_feed('<feed xmlns="x"></feed>') and not u.looks_like_feed("<!doctype html><html></html>")
 # second run must not add duplicates
 added2, _ = u.run(tmp, str(ROOT / "tests" / "fixtures"), now)
 checks["second run adds nothing (no duplicates)"] = len(added2) == 0
