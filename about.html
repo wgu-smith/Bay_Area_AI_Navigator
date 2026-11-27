@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us | Bay Area AI Navigator</title>
+<meta name="description" content="What Bay Area AI Navigator is, how items are chosen and how they are assessed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="logo">Bay Area AI Navigator</div>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="index.html#compare-heading">Compare the areas</a>
+    <a href="about.html" aria-current="page">About Us</a>
+  </nav>
+</header>
+<main class="panel about">
+  <h1 style="margin:0 0 .5rem;font:700 clamp(1.5rem,4vw,2.1rem)/1.15 var(--display);color:var(--brand)">About Us</h1>
+  <p>Bay Area AI Navigator compares major AI developments at Stanford, in Silicon Valley and in San Francisco on one timeline. It is a fictional coursework site and is not affiliated with any organisation named on it.</p>
+  <h2>What gets listed</h2>
+  <p>An item is listed only when it is a major development, is tied to a specific place in one of the three areas, links to its source and shows when it was last checked. Company announcements are labelled as self-reported, and research preprints are labelled as not peer reviewed.</p>
+  <h2>How items are scored</h2>
+  <p>Each item gets an assessed strength out of 100 and a relevance score for each of the three areas. The scores are a judgement made against a published rubric, not a measurement. The rubric is shown on the home page under the timeline.</p>
+  <h2>How it is kept up to date</h2>
+  <p>The data lives in one file, developments.json. A scheduled task checks for new items every hour and updates that file, and this page reads the file again every five minutes.</p>
+  <p><a href="index.html">Back to the timeline</a></p>
+</main>
+<p class="foot">Fictional coursework site, not affiliated with any organisation named on it.</p>
+</div>
+</body>
+</html>
