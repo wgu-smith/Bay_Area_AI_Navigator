@@ -1,80 +1,100 @@
 {
- "last_run": "2026-11-26",
- "note": "Added 3 verified items (2 Stanford, 1 San Francisco).",
+ "last_run": "2026-11-27",
+ "note": "Added 2 verified items (both Stanford).",
  "items": [
   {
-   "title": "Stanford researchers describe an AI video system that monitors ICU patients for early signs of delirium",
+   "area": "Stanford",
    "category": "research",
-   "source_url": "https://hai.stanford.edu/news/ai-enabled-video-system-monitors-icu-patients-for-early-signs-of-delirium",
-   "source_type": "Primary source",
+   "last_verified": "2026-11-26",
    "published_on": "2026-11-20",
-   "last_verified": "2026-11-26",
-   "area": "Stanford"
-  },
-  {
-   "title": "Stanford HAI announces its 2026 Hoffman-Yee research grants for seven interdisciplinary teams",
-   "category": "funding",
-   "source_url": "https://hai.stanford.edu/news/stanford-hai-backs-ambitious-ai-projects-with-2026-hoffman-yee-grants",
    "source_type": "Primary source",
-   "published_on": "2026-11-16",
-   "last_verified": "2026-11-26",
-   "area": "Stanford"
+   "source_url": "https://hai.stanford.edu/news/ai-enabled-video-system-monitors-icu-patients-for-early-signs-of-delirium",
+   "title": "Stanford researchers describe an AI video system that monitors ICU patients for early signs of delirium"
   },
   {
-   "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes",
-   "category": "education",
-   "source_url": "https://stanforddaily.com/2026/10/19/ai-policies/",
-   "published_on": "2026-10-19",
-   "last_verified": "2026-11-26",
-   "area": "Stanford"
+   "area": "Stanford",
+   "category": "research",
+   "last_verified": "2026-11-27",
+   "place": "Stanford",
+   "published_on": "2026-11-19",
+   "source_type": "Primary source",
+   "source_url": "https://hai.stanford.edu/news/ai-might-be-flooding-state-court-houses-but-proving-it-is-another-matter",
+   "title": "Stanford researchers estimate AI-assisted drafting in over a third of 2026 Santa Clara County complaints"
   },
   {
-   "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding",
+   "area": "Stanford",
    "category": "funding",
-   "source_url": "https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/",
+   "last_verified": "2026-11-26",
+   "published_on": "2026-11-16",
+   "source_type": "Primary source",
+   "source_url": "https://hai.stanford.edu/news/stanford-hai-backs-ambitious-ai-projects-with-2026-hoffman-yee-grants",
+   "title": "Stanford HAI announces its 2026 Hoffman-Yee research grants for seven interdisciplinary teams"
+  },
+  {
+   "area": "Stanford",
+   "category": "research",
+   "last_verified": "2026-11-27",
+   "place": "Stanford",
+   "published_on": "2026-11-10",
+   "source_type": "Primary source",
+   "source_url": "https://hai.stanford.edu/news/the-world-has-changed-insights-from-the-new-ai100-report",
+   "title": "AI100 study panel, administered out of Stanford HAI, publishes its third five-year report on AI"
+  },
+  {
+   "area": "Stanford",
+   "category": "education",
+   "last_verified": "2026-11-26",
+   "published_on": "2026-10-19",
+   "source_url": "https://stanforddaily.com/2026/10/19/ai-policies/",
+   "title": "COLLEGE and PWR respond to AI with paper-based writing and reading quizzes"
+  },
+  {
+   "area": "Silicon Valley",
+   "category": "funding",
+   "last_verified": "2026-11-26",
    "published_on": "2026-10-05",
-   "last_verified": "2026-11-26",
-   "area": "Silicon Valley"
+   "source_url": "https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/",
+   "title": "Q3 2026: AI start-ups raise $102 billion, 64% of global venture funding"
   },
   {
-   "title": "Stanford merges HAI and Stanford Data Science under the HAI name",
+   "area": "Stanford",
    "category": "research",
-   "source_url": "https://hai.stanford.edu/news/why-stanford-is-restructuring-for-ais-next-era",
+   "last_verified": "2026-11-26",
    "published_on": "2026-05-04",
-   "last_verified": "2026-11-26",
-   "area": "Stanford"
+   "source_url": "https://hai.stanford.edu/news/why-stanford-is-restructuring-for-ais-next-era",
+   "title": "Stanford merges HAI and Stanford Data Science under the HAI name"
   },
   {
-   "title": "AI Index 2026: twelve takeaways",
+   "area": "Stanford",
    "category": "research",
-   "source_url": "https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report",
+   "last_verified": "2026-11-26",
    "published_on": "2026-04-13",
-   "last_verified": "2026-11-26",
-   "area": "Stanford"
+   "source_url": "https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report",
+   "title": "AI Index 2026: twelve takeaways"
   },
   {
-   "title": "The AI boom on the ground in Silicon Valley",
+   "area": "Silicon Valley",
    "category": "infrastructure",
-   "source_url": "https://www.marketplace.org/story/2026/01/27/exploring-the-ai-boom-on-the-ground-in-silicon-valley",
+   "last_verified": "2026-11-26",
    "published_on": "2026-01-27",
-   "last_verified": "2026-11-26",
-   "area": "Silicon Valley"
+   "source_url": "https://www.marketplace.org/story/2026/01/27/exploring-the-ai-boom-on-the-ground-in-silicon-valley",
+   "title": "The AI boom on the ground in Silicon Valley"
   },
   {
-   "title": "Waymo adds Bay Area freeway rides and San Jose airport service",
+   "area": "San Francisco",
    "category": "mobility",
-   "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
-   "published_on": "2025-11-12",
    "last_verified": "2026-11-26",
-   "area": "San Francisco"
+   "published_on": "2025-11-12",
+   "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
+   "title": "Waymo adds Bay Area freeway rides and San Jose airport service"
   },
   {
-   "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees",
+   "area": "San Francisco",
    "category": "public sector",
-   "source_url": "https://www.sf.gov/news-mayor-lurie-brings-ai-technology-to-san-francisco-government-cementing-city-as-global-ai-leader",
-   "published_on": "2025-07-14",
    "last_verified": "2026-11-26",
-   "area": "San Francisco"
+   "published_on": "2025-07-14",
+   "source_url": "https://www.sf.gov/news-mayor-lurie-brings-ai-technology-to-san-francisco-government-cementing-city-as-global-ai-leader",
+   "title": "San Francisco begins rolling out Copilot Chat to about 30,000 city employees"
   }
  ]
 }
