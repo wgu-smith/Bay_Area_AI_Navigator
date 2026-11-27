@@ -15,9 +15,9 @@ added, status = u.run(tmp, str(ROOT / "tests" / "fixtures"), now)
 after = json.loads((tmp / "developments.json").read_text())
 titles = [a["title"] for a in added]
 checks = {
-  "bad feed does not stop the run": any(s.startswith("FAILED") for n, s in status if n == "San Francisco Chronicle"),
+  "bad feed does not stop the run": any(s.startswith("FAILED") for n, s in status if n == "CBS News Bay Area business"),
   "missing feeds are reported, not fatal": any(s == "no fixture" for _, s in status),
-  "Stanford AI story added as Primary source": any("radiology" in t and a["source_type"] == "Primary source" and a["area"] == "Stanford" for t, a in zip(titles, added)),
+  "Stanford AI story added, tied to Stanford": any("radiology" in t and a["source_type"] == "Independently reported" and a["area"] == "Stanford" for t, a in zip(titles, added)),
   "San Francisco funding story added with category funding": any("raises $250 million" in t and a["area"] == "San Francisco" and a["category"] == "funding" for t, a in zip(titles, added)),
   "tracking query string dropped from duplicate check only, link kept https": all(a["source_url"].startswith("https://") for a in added),
   "non-AI story skipped": not any("poetry" in t for t in titles),
