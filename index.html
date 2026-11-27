@@ -307,6 +307,8 @@ function clean(r) {
 }
 let feedChecked = '';
 let feedRubric = null;
+let feedProblem = '';
+let loadedLive = false;
 let lastRows = null;
 function setItems(rows, live) {
   lastRows = rows;
@@ -315,7 +317,9 @@ function setItems(rows, live) {
   const newest = items.reduce((m, i) => (i.last_verified > m ? i.last_verified : m), '');
   const checked = live && /^\d{4}-\d{2}-\d{2}$/.test(feedChecked) && feedChecked > newest ? feedChecked : newest;
   statusEl.textContent = items.length + ' developments across ' + AREAS.length + ' areas. ' +
-    (live ? 'Live feed' : 'Saved snapshot') + (checked ? ', last checked ' + fmtDate(checked) + '.' : '.');
+    (live ? 'Latest data' : 'Saved copy') + (checked ? ', last checked ' + fmtDate(checked) + '.' : '.') +
+    (!live && feedProblem ? ' ' + feedProblem : '');
+  statusEl.className = !live && feedProblem ? 'error' : '';
   buildFilters();
   if (activeCategory && !items.some(i => i.category === activeCategory)) activeCategory = null;
   controlsEl.hidden = false;
@@ -335,15 +339,30 @@ function showRubric() {
   box.hidden = false;
 }
 async function refresh() {          // read developments.json, which the hourly update rewrites
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
   try {
-    const res = await fetch('developments.json?t=' + Date.now(), { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const res = await fetch('developments.json?t=' + Date.now(), { cache: 'no-store', signal: controller.signal });
+    if (!res.ok) throw new Error('The data file could not be loaded (HTTP ' + res.status + '), so a saved copy is shown.');
     const file = await res.json();
+    if (!file || !Array.isArray(file.items) || !file.items.filter(clean).length) {
+      throw new Error('The data file has no usable items, so a saved copy is shown.');
+    }
+    feedProblem = '';
+    loadedLive = true;
     feedChecked = typeof file.last_run === 'string' ? file.last_run : '';
     feedRubric = file.rubric || null;
     showRubric();
-    if (Array.isArray(file.items) && file.items.length) setItems(file.items, true);
-  } catch (e) { /* opened from disk or offline: keep the saved snapshot */ }
+    setItems(file.items, true);
+  } catch (err) {
+    feedProblem = err.name === 'AbortError' ? 'The data file took too long to load, so a saved copy is shown.'
+      : err instanceof TypeError ? 'Could not reach the data file, so a saved copy is shown.'
+      : err instanceof SyntaxError ? 'The data file could not be read, so a saved copy is shown.'
+      : err.message;
+    if (!loadedLive) setItems(DATA, false);   // keep showing newer data if a later check fails
+  } finally {
+    clearTimeout(timer);
+  }
 }
 refresh();
 setInterval(refresh, 5 * 60 * 1000);  // pick up new items without a reload
