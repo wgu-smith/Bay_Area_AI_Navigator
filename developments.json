@@ -190,26 +190,6 @@
   },
   {
    "area": "San Francisco",
-   "category": "mobility",
-   "last_verified": "2026-11-26",
-   "published_on": "2025-11-12",
-   "source_url": "https://www.kqed.org/news/12063805/waymo-expands-service-bay-area-freeways-san-jose-airport",
-   "title": "Waymo adds Bay Area freeway rides and San Jose airport service",
-   "scores": {
-    "source": 30,
-    "corroboration": 0,
-    "specificity": 14,
-    "significance": 10,
-    "strength": 54,
-    "relevance": {
-     "Stanford": 0,
-     "Silicon Valley": 60,
-     "San Francisco": 85
-    }
-   }
-  },
-  {
-   "area": "San Francisco",
    "category": "public sector",
    "last_verified": "2026-11-26",
    "published_on": "2025-07-14",
