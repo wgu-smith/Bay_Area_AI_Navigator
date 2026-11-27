@@ -27,7 +27,8 @@
   <h2>How items are scored</h2>
   <p>Each item gets an assessed strength out of 100 and a relevance score for each of the three areas. The scores are a judgement made against a published rubric, not a measurement. The rubric is shown on the home page under the timeline.</p>
   <h2>How it is kept up to date</h2>
-  <p>The data lives in one file, developments.json. A scheduled task checks for new items every hour and updates that file, and this page reads the file again every five minutes.</p>
+  <p>The data lives in one file, developments.json. A GitHub Actions workflow runs every hour, reads a list of news and institution feeds (sources.json), keeps stories that are about AI and name Stanford, Silicon Valley or San Francisco, scores them against the rubric and commits the result. This page reads the file again every five minutes.</p>
+  <p>Items added this way are labelled as assessed by automated rules. A script can match places and score by type of source, but it cannot check whether a story supports its headline, so those items are not hand-checked. For them, &ldquo;last verified&rdquo; means the date the feed was read.</p>
   <p><a href="index.html">Back to the timeline</a></p>
 </main>
 <p class="foot">Fictional coursework site, not affiliated with any organisation named on it.</p>

@@ -168,7 +168,7 @@ function showDetail(i) {
   detailEl.append(h, meta);
   if (i.source_type || i.place) {
     const ev = document.createElement('p');
-    ev.textContent = 'Evidence: ' + (i.source_type || 'not labelled') + (i.place ? ' | Place: ' + i.place : '');
+    ev.textContent = 'Evidence: ' + (i.source_type || 'not labelled') + (i.place ? ' | Place: ' + i.place : '') + (i.assessed_by === 'automated' ? ' | Assessed by: automated rules, not hand-checked' : '');
     detailEl.append(ev);
   }
   if (i.scores && typeof i.scores.strength === 'number') {

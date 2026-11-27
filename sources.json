@@ -1,0 +1,14 @@
+{
+  "note": "Feeds read by scripts/update_developments.py every hour. The script reports how many items each feed returned, so a wrong address shows up in the run log. KQED is deliberately not listed.",
+  "feeds": [
+    { "name": "Stanford HAI news", "url": "https://hai.stanford.edu/news/rss.xml", "kind": "primary", "home_area": "Stanford" },
+    { "name": "Stanford Report", "url": "https://news.stanford.edu/feed/", "kind": "primary", "home_area": "Stanford" },
+    { "name": "Stanford Daily", "url": "https://stanforddaily.com/feed/", "kind": "news", "home_area": "Stanford" },
+    { "name": "Crunchbase News", "url": "https://news.crunchbase.com/feed/", "kind": "news" },
+    { "name": "San Jose Spotlight", "url": "https://sanjosespotlight.com/feed/", "kind": "news" },
+    { "name": "Mercury News", "url": "https://www.mercurynews.com/feed/", "kind": "news" },
+    { "name": "Palo Alto Online", "url": "https://www.paloaltoonline.com/feed/", "kind": "news" },
+    { "name": "San Francisco Standard", "url": "https://sfstandard.com/feed/", "kind": "news" },
+    { "name": "San Francisco Chronicle", "url": "https://www.sfchronicle.com/rss/", "kind": "news" }
+  ]
+}
