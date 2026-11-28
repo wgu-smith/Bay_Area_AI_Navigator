@@ -1,5 +1,5 @@
 {
-  "note": "Feeds read by scripts/update_developments.py every hour. If an address is a normal web page, the script follows the feed link the page advertises. The script reports how many stories each feed returned, so a bad address shows up in the run log. KQED is deliberately not listed. Stanford Report and Mercury News were removed because they answered 403 Forbidden to automated requests, and the script does not try to get around that. Stanford HAI news and the San Francisco Chronicle were removed because their pages advertise no feed. SLAC science news was added from the feed address SLAC itself publishes on its Connect With Us page. An aggregator copy of that feed (phys.org) was not used.",
+  "note": "Feeds read by scripts/update_developments.py every hour. If an address is a normal web page, the script follows the feed link the page advertises. The script reports how many stories each feed returned, so a bad address shows up in the run log. KQED is deliberately not listed. Stanford Report and Mercury News were removed because they answered 403 Forbidden to automated requests, and the script does not try to get around that. Stanford HAI news and the San Francisco Chronicle were removed because their pages advertise no feed. SLAC science news was added from the feed address SLAC itself publishes on its Connect With Us page. An aggregator copy of that feed (phys.org) was not used. The Y Combinator blog was added from its own feed address. It is YC's own writing, so it counts as a primary source and is not treated as independent reporting. X (Twitter) and Hacker News are not listed, because social media and link aggregators are excluded.",
   "feeds": [
     {
       "name": "Stanford Daily",
@@ -37,6 +37,11 @@
       "url": "https://www6.slac.stanford.edu/taxonomy/term/84/feed",
       "kind": "primary",
       "home_area": "Stanford"
+    },
+    {
+      "name": "Y Combinator Blog",
+      "url": "https://www.ycombinator.com/blog/rss",
+      "kind": "primary"
     }
   ]
 }
